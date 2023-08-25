@@ -55,12 +55,31 @@ utec::vector::vector(const utec::vector &other) {
 
 }
 
-utec::vector utec::vector::operator=(const utec::vector &other) {
+utec::vector& utec::vector::operator=(const utec::vector &other) {
+    if (&other == this) return *this;
     delete [] data;
     sz = other.sz;
     data = new TYPE [sz];
     for (int i = 0; i < sz; ++i) {
         data[i] = other.data[i];
     }
+    return *this;
+}
+
+utec::vector::vector(utec::vector &&other) {
+    sz = other.sz;
+    data = other.data;
+    other.data = nullptr;
+    other.sz = 0;
+
+}
+
+utec::vector& utec::vector::operator=(utec::vector &&other) {
+    if (&other == this) return *this;
+    delete [] data;
+    sz = other.sz;
+    data = other.data;
+    other.data = nullptr;
+    other.sz = 0;
     return *this;
 }

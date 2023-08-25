@@ -23,7 +23,10 @@ namespace utec {
         vector() = default;
         vector(std::initializer_list<TYPE> lst);
         vector(const utec::vector& other);
-        vector operator=(const utec::vector& other);
+        vector& operator=(const utec::vector& other);
+        vector(utec::vector&& other) noexcept;
+        vector& operator=(utec::vector&& other) noexcept;
+
 
         ~vector();
         [[nodiscard]] SIZE_TYPE size() const;
